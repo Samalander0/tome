@@ -1,6 +1,41 @@
 <script>
   import '$lib/styles.scss';
   import { Dock, SquareLibrary, Mail, Info, SlidersHorizontal, ChevronUp } from 'lucide-svelte'
+
+  import Card from '$lib/components/Card.svelte'
+
+  const results = [
+    {
+      name: "browsingmode.com",
+      url: "https://browsingmode.com/",
+      image: "https://firebasestorage.googleapis.com/v0/b/tome-cf4b4.appspot.com/o/images%2Fbrowsingmode-1.png?alt=media"
+    },
+    {
+      name: "Navbar Gallery",
+      url: "https://www.navbar.gallery/",
+      image: "https://firebasestorage.googleapis.com/v0/b/tome-cf4b4.appspot.com/o/images%2Fnavbar_gallery-1.png?alt=media"
+    },
+    {
+      name: "browsingmode.com",
+      url: "https://browsingmode.com/",
+      image: "https://firebasestorage.googleapis.com/v0/b/tome-cf4b4.appspot.com/o/images%2Fbrowsingmode-1.png?alt=media"
+    },
+    {
+      name: "Navbar Gallery",
+      url: "https://www.navbar.gallery/",
+      image: "https://firebasestorage.googleapis.com/v0/b/tome-cf4b4.appspot.com/o/images%2Fnavbar_gallery-1.png?alt=media"
+    },
+    {
+      name: "browsingmode.com",
+      url: "https://browsingmode.com/",
+      image: "https://firebasestorage.googleapis.com/v0/b/tome-cf4b4.appspot.com/o/images%2Fbrowsingmode-1.png?alt=media"
+    },
+    {
+      name: "Navbar Gallery",
+      url: "https://www.navbar.gallery/",
+      image: "https://firebasestorage.googleapis.com/v0/b/tome-cf4b4.appspot.com/o/images%2Fnavbar_gallery-1.png?alt=media"
+    },
+  ]
 </script>
 
 <div class="app-top">
@@ -40,4 +75,16 @@
       </button>
     </div>
   </header>
+</div>
+
+<div class="grid">
+  <div class="grid-lines">
+    {#each [0,1,2,3,4,5,6,7,8,9,10] as line}
+      <div></div>
+    {/each}
+  </div>
+  
+  {#each results as card, i}
+    <Card data={card} index={i}/>
+  {/each}
 </div>
