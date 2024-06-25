@@ -1,0 +1,102 @@
+@import './sam.scss';
+
+@font-face {
+  font-family: Geist Variable;
+  src: url("/fonts/GeistVF.woff");
+}
+
+body {
+  background: #F1F5F9;
+  margin: 0;
+  padding: 0;
+  font-family: 'Geist Variable', sans-serif;
+}
+
+.app-top {
+  background: white;
+  padding: 2rem 8vw;
+
+  .app-nav {
+    display: flex;
+    justify-content: space-between;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+
+      h2 {
+        font-weight: 575;
+        letter-spacing: -0.05em;
+        font-size: 20px;
+        margin: 0;
+      }
+    }
+    .nav-right {
+      display: flex;
+      gap: 0.25rem;
+
+      button {
+        @include icon-button;
+      }
+    }
+  }
+
+  .app-header {
+    padding-top: 6rem;
+
+    h1 {
+      font-weight: 400;
+      font-size: 2.5rem;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.5em 0;
+    }
+
+    .filters {
+      display: flex;
+      gap: 0.5rem;
+
+      button {
+        @include flex-center;
+
+        gap: 0.25rem;
+        background: #F1F5F9;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 32px;
+        color: #4B5563;
+        font: inherit;
+        font-size: 14px;
+
+        &:first-of-type {
+          background: white;
+          @include light-border;
+
+          span {
+            display: block;
+            background: #E2E8F0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+
+            @include flex-center;
+          }
+        }
+      }
+    }
+
+    .header-buttons {
+      @include flex-center;
+      justify-content: space-between;
+
+      .dropdown-controls {
+        aspect-ratio: 1/1;
+        border-radius: 100%;
+        display: grid;
+        place-items: center;
+        background: transparent;
+        @include light-border;
+      }
+    }
+  }
+}

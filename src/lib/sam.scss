@@ -1,0 +1,69 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin light-border {
+  border: 1px solid #E5E7EB;
+}
+
+@mixin icon-button {
+  padding: 0.25rem 0.5rem;
+  aspect-ratio: 1/1;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  position: relative;
+  display: block;
+
+  @include flex-center;
+  
+  transition: 0.2s ease;
+
+  svg {
+    transition: 0.2s ease;
+  }
+
+  &:hover {
+    background: #E5E7EB;
+    cursor: pointer;
+
+    svg {
+      transform: rotate(10deg) scale(1.05);
+    }
+  }
+  &:active {
+    svg {
+      transform: rotate(10deg) scale(0.95);
+    }
+  }
+
+  &:after {
+    content: attr(data-title);
+
+    position: absolute;
+    bottom: -1.75rem;
+    left: 50%;
+    transform: translateX(-50%) scale(0.5);
+    opacity: 0;
+
+    background: #F9FAFB;
+    padding: 4px;
+    border-radius: 4px;
+
+    font-family: 'Geist Variable', sans-serif;
+    font-weight: 450;
+    font-size: 0.75rem;
+
+    transform-origin: top center;
+
+    transition: 0.2s ease;
+    transition-delay: 0s;
+  }
+  &:hover::after {
+    transition-delay: 0.25s;
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
