@@ -5,6 +5,10 @@
   src: url("/fonts/GeistVF.woff");
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: #F1F5F9;
   margin: 0;
@@ -50,10 +54,17 @@ body {
     padding-top: 6rem;
 
     h1 {
-      font-weight: 400;
+      font-weight: 450;
       font-size: 2.5rem;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.015em;
       margin: 0 0 0.5em 0;
+
+      @media (max-width: 950px) {
+        font-size: 2rem;
+      }
+      @media (max-width: 500px) {
+        font-size: 1.5rem;
+      }
     }
 
     .filters {
@@ -107,43 +118,70 @@ body {
 
 .grid {
   flex: 1;
-  padding: 0 6vw;
-  display: grid;
-  grid-template-columns: repeat(10, calc(100% / 10));
+  padding: 2rem 6vw;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
   position: relative;
-  padding-top: 2rem;
-
-  .grid-lines {
-    position: absolute;
-    z-index: -1;
-    inset: 0 6vw;
-    display: flex;
-    justify-content: space-between;
-
-    div {
-      background: #E2E8F0;
-      width: 1px;
-      height: 100%;
-    }
-  }
 
   .card {
-    border: 1px solid #E2E8F0;
     height: fit-content;
     margin: 0;
-    padding: 0;
+    padding: calc(9 * (0.125vw + 1px)) calc(16 * (0.125vw + 1px));
     position: relative;
 
-    img {
-      max-width: 100%;
+    flex-basis: 400px;
+    flex-grow: 1;
+
+    background: #CBD5E1;
+    color: inherit;
+    border-radius: 4px;
+
+    transition: 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    &:hover {
+      padding: 0;
+      cursor: none;
+
+      .open {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    &:active {
+      transition: 0.2s cubic-bezier(0.65, 0, 0.35, 1);
+      padding: calc(9 * 0.05rem) calc(16 * 0.05rem);
+      color: inherit;
+
+      .open .out svg {
+        transform: scale(0.8) rotate(-10deg);
+      }
     }
 
-    .info {
-      position: absolute;
-      bottom: 8px;
-      left: 8px;
+    img {
+      display: block;
+      max-width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 4px;
+    }
+
+    .open {
       display: flex;
-      gap: 0.25rem;
+      gap: 4px;
+      width: max-content;
+      z-index: 2;
+
+      .out {
+        background: #F8FAFC;
+        border-radius: 32px;
+        color: black;
+        @include light-border;
+        @include flex-center;
+        padding: 7px;
+
+        svg {
+          transition: 0.2s ease;
+        }
+      }
 
       h3 {
         margin: 0;
@@ -155,14 +193,13 @@ body {
         @include light-border;
         @include flex-center;
       }
-      a {
-        background: #F8FAFC;
-        border-radius: 32px;
-        color: black;
-        @include light-border;
-        @include flex-center;
-        padding: 7px;
-      }
+
+      pointer-events: none;
+      position: absolute;
+
+      transition: opacity 0.1s ease, transform 0.1s ease;
+      opacity: 0;
+      transform: scale(0.5);
     }
   }
 }
