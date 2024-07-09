@@ -16,6 +16,7 @@
   border-radius: 4px;
   position: relative;
   display: block;
+  color: inherit;
 
   @include flex-center;
   
@@ -47,6 +48,8 @@
     left: 50%;
     transform: translateX(-50%) scale(0.5);
     opacity: 0;
+
+    width: max-content;
 
     background: #F9FAFB;
     padding: 4px;
