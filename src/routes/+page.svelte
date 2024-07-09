@@ -4,11 +4,14 @@
 
   import Card from '$lib/components/Card.svelte';
   import TagChip from '$lib/components/TagChip.svelte';
+  import Metatags from '$lib/components/Metatags.svelte';
 
   import { sites } from '$lib/sites.js';
   
   let results = sites;
 </script>
+
+<Metatags/>
 
 <div class="app-top">
   <nav class="app-nav">
@@ -28,7 +31,7 @@
   <header class="app-header">
     <h1>
       Hyper-specific design inspiration.<br/>
-      Find exactly what you're looking for.
+      More coming soon.
     </h1>
     <!--
       <div class="header-buttons">
