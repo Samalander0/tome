@@ -1,6 +1,6 @@
 export const tags = [
   {
-    name: "Website",
+    name: "Websites",
     icon: "laptop",
     category: "Platforms"
   },
@@ -15,8 +15,56 @@ export const tags = [
     category: "Platforms"
   },
   {
-    name: "Agency",
-    icon: "usersRound",
-    category: "Categories"
-  }
+    name: "404",
+    icon: "fileQuestion",
+    category: "Elements"
+  },
+  {
+    name: "Effects & Animations",
+    icon: "wandSparkles",
+    category: "Features"
+  },
+  {
+    name: "Finance",
+    icon: "piggyBank",
+    category: "Industries"
+  },
+  {
+    name: "Scrolling Animations",
+    icon: "mouse",
+    category: "Features"
+  },
+  {
+    name: "Single Page",
+    icon: "galleryVertical",
+    category: "Types"
+  },
+  {
+    name: "Grid",
+    icon: "layoutGrid",
+    category: "Elements"
+  },
+  {
+    name: "User Experience",
+    icon: "users",
+    category: "Features"
+  },
+  {
+    name: "AI",
+    icon: "sparkles",
+    category: "Industries"
+  },
+  {
+    name: "Portfolios",
+    icon: "briefcaseBusiness",
+    category: "Types"
+  },
 ]
+
+/*
+{
+    name: "",
+    icon: "",
+    category: ""
+  },
+*/

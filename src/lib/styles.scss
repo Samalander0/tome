@@ -71,30 +71,202 @@ body {
       display: flex;
       gap: 0.5rem;
 
-      button {
+      .header-button {
         @include flex-center;
 
-        gap: 0.25rem;
         background: #F1F5F9;
         border: none;
         padding: 8px 16px;
         border-radius: 32px;
         color: #4B5563;
         font: inherit;
-        font-size: 14px;
+        font-size: 16px;
 
-        &:first-of-type {
-          background: white;
-          @include light-border;
+        transition: 0.1s ease;
 
-          span {
-            display: block;
-            background: #E2E8F0;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
+        &:hover {
+          color: black;
+          cursor: pointer;
+        }
+      }
 
+      .toggle {
+        gap: 6px;
+
+        svg {
+          margin-bottom: 1px;
+        }
+
+        &.selected {
+          background: black;
+          color: white;
+        }
+      }
+      .filter {
+        background: white;
+        @include light-border;
+        gap: 6px;
+
+        .badge {
+          display: block;
+          background: #E2E8F0;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+
+          font-size: 14px;
+
+          @include flex-center;
+        }
+
+        &.active {
+          background: #F8FAFC;
+        }
+      }
+    }
+
+    .filter-wrapper {
+      position: relative;
+    }
+    .filter-popup {
+      position: absolute;
+      bottom: -0.5rem;
+      transform: translateY(100%);
+      left: 0;
+      z-index: 2;
+
+      background: white;
+      @include light-border;
+      width: 25rem;
+      height: 20rem;
+      border-radius: 0.5rem;
+
+      display: flex;
+      flex-direction: column;
+
+      transition: 0.2s ease;
+      transform-origin: 20px top;
+
+      &.hidden {
+        transform: translateY(100%) scale(0.9);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .popup-top {
+        &:has(.selected-filters) { // TODO: Remove when adding search
+          border-bottom: $light-border;
+        }
+
+        .selected-filters {
+          display: flex;
+          flex-wrap: wrap;
+          padding: 1rem;
+          gap: 0.5rem;
+
+          .selected-filter {
             @include flex-center;
+            gap: 6px;
+            padding: 4px 8px;
+            border-radius: 32px;
+            color: #4B5563;
+            font-size: 16px;
+            background: #f1f5f9;
+
+            button {
+              @include flex-center;
+              width: 22px;
+              height: 22px;
+              padding: none;
+              background: #E2E8F0;
+              border: none;
+              border-radius: 50%;
+
+              transition: 0.2s ease;
+
+              &:hover {
+                background: #CBD5E1;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+
+      .popup-bottom {
+        display: flex;
+        flex: 1;
+
+        .filter-categories {
+          display: flex;
+          flex-direction: column;
+          padding: 1.5rem 2rem 1.5rem 1.5rem;
+          gap: 0.5rem;
+          border-right: $light-border;
+
+          label {
+            color: #94A3B8;
+            @include flex-center;
+            justify-content: flex-start;
+            gap: 4px;
+
+            transition: 0.2s ease;
+            &:hover {
+              color: #64748B;
+              cursor: pointer;
+            }
+            &:has(input:checked) {
+              color: black;
+            }
+            input {
+              display: none;
+            }
+          }
+        }
+
+        .filter-results {
+          display: flex;
+          flex-direction: column;
+          padding: 1.5rem 1rem;
+          gap: 2px;
+
+          .potential-filter {
+            background: transparent;
+            @include flex-center;
+            justify-content: flex-start;
+            gap: 6px;
+            border: none;
+            padding: 0;
+            font: inherit;
+            width: 100%;
+            border-radius: 4px;
+            color: #1E293B;
+
+            padding: 4px 8px;
+
+            &.selected {
+              opacity: 0.5;
+            }
+
+            .icon {
+              color: #1E293B;
+              background: #E2E8F0;
+              border-radius: 50%;
+              width: 24px;
+              height: 24px;
+              @include flex-center;
+            }
+
+            transition: 0.2s ease;
+            &:hover {
+              background: #F8FAFC;
+              color: black;
+              cursor: pointer;
+
+              .icon {
+                color: black;
+              }
+            }
           }
         }
       }
@@ -200,6 +372,53 @@ body {
       transition: opacity 0.1s ease, transform 0.1s ease;
       opacity: 0;
       transform: scale(0.5);
+    }
+  }
+
+  .none-found {
+    background: #fbd770;
+    padding: 4rem 2rem 2rem 2rem;
+    width: 16rem;
+    height: 16rem;
+    margin: auto auto;
+
+    transform: rotate(var(--rotation));
+
+    @include flex-center;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    box-shadow: 0px 16px 72px 20px rgba(0,0,0,0.06);
+
+    h3 {
+      font-size: 2rem;
+      font-weight: 500;
+      margin: 0;
+      letter-spacing: -0.03em;
+    }
+    a {
+      color: inherit;
+      transition: 0.2s ease;
+      color: #475569;
+      text-decoration: underline solid rgb(0 0 0 / 0.25);
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    &:after {
+      content: "";
+      width: 6rem;
+      height: 3rem;
+      position: absolute;
+      top: -1.25rem;
+      left: 50%;
+      background: rgba(216, 216, 216, 0.5);
+      transform: translateX(-50%) rotate(calc(var(--rotation) * -1));
+      $left: 5%;
+      $right: 95%;
+      clip-path: polygon(0% 0%, $left 10%, 0% 20%, $left 30%, 0% 40%, $left 50%, 0% 60%, $left 70%, 0% 80%, $left 90%, 0% 100%, 100% 100%, $right 90%, 100% 80%, $right 70%, 100% 60%, $right 50%, 100% 40%, $right 30%, 100% 20%, $right 10%, 100% 0);
     }
   }
 }

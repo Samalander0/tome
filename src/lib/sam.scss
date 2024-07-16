@@ -4,8 +4,9 @@
   align-items: center;
 }
 
+$light-border: 1px solid #E5E7EB;
 @mixin light-border {
-  border: 1px solid #E5E7EB;
+  border: $light-border;
 }
 
 @mixin icon-button {
