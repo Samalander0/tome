@@ -70,10 +70,12 @@ body {
     .filters {
       display: flex;
       gap: 0.5rem;
+      flex-wrap: wrap;
 
       .header-button {
         @include flex-center;
 
+        width: max-content;
         background: #F1F5F9;
         border: none;
         padding: 8px 16px;
