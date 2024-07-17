@@ -59,6 +59,81 @@ export const tags = [
     icon: "briefcaseBusiness",
     category: "Types"
   },
+  {
+    name: "Agency",
+    icon: "doorOpen",
+    category: "Types"
+  },
+  {
+    name: "Beauty & Self-care",
+    icon: "flower",
+    category: "Industries"
+  },
+  {
+    name: "E-commerce",
+    icon: "shoppingCart",
+    category: "Industries"
+  },
+  {
+    name: "Fashion",
+    icon: "shirt",
+    category: "Industries"
+  },
+  {
+    name: "Food & Drink",
+    icon: "salad",
+    category: "Industries"
+  },
+  {
+    name: "Home & Living",
+    icon: "house",
+    category: "Industries"
+  },
+  {
+    name: "Media & Publishing",
+    icon: "newspaper",
+    category: "Industries"
+  },
+  {
+    name: "Technology",
+    icon: "cpu",
+    category: "Industries"
+  },
+  {
+    name: "Button",
+    icon: "mousePointerClick",
+    category: "Elements"
+  },
+  {
+    name: "Navbar",
+    icon: "appWindow",
+    category: "Elements"
+  },
+  {
+    name: "Search",
+    icon: "search",
+    category: "Elements"
+  },
+  {
+    name: "Startup",
+    icon: "lightbulb",
+    category: "Types"
+  },
+  {
+    name: "Education",
+    icon: "school",
+    category: "Industries"
+  },
+  {
+    name: "3D",
+    icon: "box",
+    category: "Types"
+  },
+  {
+    name: "Hover Effects",
+    icon: "squareMousePointer",
+    category: "Features"
+  }
 ]
 
 /*

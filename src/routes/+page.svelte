@@ -13,6 +13,8 @@
   import { filter } from '$lib/filter.js';
 
   import _ from 'lodash';
+  import { onMount } from 'svelte';
+  import { pushState } from '$app/navigation';
 
   let filters = [];
   
@@ -36,6 +38,8 @@
   ];
 
   function updateResults() {
+    filters = filters; // Make svelte update anything that uses filters
+
     results = filter(filters)
 
     not_found_text = not_found_options[Math.floor(Math.random() * not_found_options.length)]
@@ -49,9 +53,33 @@
       filters.push(event.detail.tag);
     }
 
-    filters = filters; // Make svelte update anything that uses filters
     updateResults()
+
+    // Change the URL
+    if (filters.length) {
+      pushState(`/?tags=${filters.map((tag) => {return _.kebabCase(tag)})}`);
+    } else {
+      pushState('/');
+    }
   }
+
+  // Load filters from URL
+  onMount(() => {
+    if (window.location.search) {
+      let url_filters = window.location.search.split('?tags=')[1].split(",")
+      
+      url_filters.map((url_filter) => {
+        tags.map((tag) => {
+          if (url_filter == _.kebabCase(tag.name)) {
+            filters.push(tag.name)
+          }
+        })
+      })
+
+      updateResults()
+      console.log(filters)
+    }
+  })
 
   let filter_popup = false;
 
@@ -78,8 +106,8 @@
   </nav>
   <header class="app-header">
     <h1>
-      Hyper-specific design inspiration.<br/>
-      Find exactly what you're looking for.
+      Hand-picked design inspiration.<br/>
+      Catalyze creativity.
     </h1>
     <div class="header-buttons">
       <div class="filters">
@@ -87,7 +115,7 @@
           <button class={filter_popup ? "header-button filter active" : "header-button filter"} on:click={() => {filter_popup = !filter_popup}}>
             <SlidersHorizontal size="16"/>
             Filter
-            <span class="badge">{filters.length}</span>
+            <span class={filters.length ? "badge filters-active" : "badge"}>{filters.length}</span>
           </button>
           <div class={filter_popup ? "filter-popup" : "filter-popup hidden"}>
             <div class="popup-top">
@@ -133,9 +161,11 @@
                 </label>
               </div>
               <div class="filter-results">
-                {#each filter_results as result}
-                  <PotentialFilter filter={result} filters={filters} on:add={toggleFilter}/>
-                {/each}
+                <div class="results-wrapper">
+                  {#each filter_results as result (result.name)}
+                    <PotentialFilter filter={result} filters={filters} on:add={toggleFilter}/>
+                  {/each}
+                </div>
               </div>
             </div>
           </div>
